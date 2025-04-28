@@ -4,9 +4,13 @@ from . import models
 
 def chat(request, chat_uuid):
     chat = get_object_or_404(models.Chat, pk=chat_uuid)
+    mock_user = models.User.objects.get(pk=1)
+
     context = {
         'title': chat_uuid,
-        'messages': chat.messages.all()
+        'messages': chat.messages.all(),
+        'chats': mock_user.chats.all(),
+        'current_chat_id': chat.id
     }
 
     return render(request, 'chat/chat.html', context)
