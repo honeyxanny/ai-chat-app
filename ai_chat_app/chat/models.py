@@ -21,8 +21,12 @@ class Chat(BaseModel):
 
 
 class Message(BaseModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True
+    )
     chat = models.ForeignKey(
         Chat, on_delete=models.CASCADE, related_name="messages"
     )
     text = models.TextField()
+
+  
