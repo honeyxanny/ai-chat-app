@@ -1,3 +1,12 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const sidebar = document.getElementById("sidebar");
+  const toggleButton = document.getElementById("toggleSidebar");
+
+  toggleButton.addEventListener("click", function () {
+    sidebar.classList.toggle("expanded");
+  });
+});
+
 function getCurrentTime() {
   const now = new Date();
   const hours = now.getHours().toString().padStart(2, '0');

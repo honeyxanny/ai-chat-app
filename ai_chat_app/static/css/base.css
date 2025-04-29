@@ -1,3 +1,21 @@
 html, body {
     height: 100%;
 }
+
+.sidebar.expanded {
+    width: 20%;
+}
+
+.sidebar .nav-link span, .sidebar .nav-link small {
+    display: none;
+}
+
+.sidebar.expanded .nav-link span, .sidebar.expanded .nav-link small {
+    display: inline;
+}
+
+.sidebar .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

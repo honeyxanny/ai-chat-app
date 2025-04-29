@@ -28,5 +28,3 @@ class Message(BaseModel):
         Chat, on_delete=models.CASCADE, related_name="messages"
     )
     text = models.TextField()
-
-  

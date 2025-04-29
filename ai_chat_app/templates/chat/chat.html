@@ -1,60 +1,76 @@
-{% extends "base.html" %} {% load static %} {% block content %}
-<div class="container-fluid p-0 h-100">
-  <div class="row h-100 g-0">
-    <!-- Боковое меню -->
-    <div
-      class="col-2 d-flex flex-column flex-shrink-0 p-2 text-white bg-dark h-100"
-    >
-      <div class="text-center fs-4">
-        <p>Чаты</p>
-      </div>
-      <div class="flex-column mb-auto p-1">
-        {% for chat in chats %}
-        <a href="/chat/{{ chat.id }}" style="text-decoration: none">
-          <div
-            class="card p-1 m-1 {% if chat.id == current_chat_id %}bg-primary text-white{% endif %}"
-          >
-            {{ chat.title }}
-          </div>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid p-0 d-flex">
+  <div class="d-flex flex-column vh-100 bg-light sidebar" id="sidebar" style="background-color: red;">
+    <ul class="nav nav-pills flex-column">
+      <li class="nav-item ">
+        <a href="" class="nav-link py-3 m-2 border-bottom rounded-3 bg-primary text-decoratioin-none text-white">
+          <span>Новый чат+</span>
         </a>
-        {% endfor %}
-      </div>
-      <hr />
-      <div class="dropdown">
-        <a
-          href="#"
-          class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-          id="dropdownUser1"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <img
-            src=""
-            alt=""
-            width="32"
-            height="32"
-            class="rounded-circle me-2"
-          />
-          <strong>mdo</strong>
+      </li>
+      <li class="nav-item">
+        <a href="" class="nav-link py-3 border-bottom rounded-3">
+          <span>Поиск</span>
         </a>
-        <ul
-          class="dropdown-menu dropdown-menu-dark text-small shadow"
-          aria-labelledby="dropdownUser1"
-        >
-          <li><a class="dropdown-item" href="#">Профиль</a></li>
-          <li><hr class="dropdown-divider" /></li>
-          <li><a class="dropdown-item" href="#">Выйти</a></li>
-        </ul>
-      </div>
+      </li>
+    </ul>
+    <div class="d-flex flex-column h-100 p-2" id="chats">
+      {% for chat in chats %}
+      <a href="/chat/{{ chat.id }}" class="text-decoration-none">
+        <div class="border rounded-2 mt-2 p-2 {% if chat.id == current_chat_id %} bg-primary text-white {% endif%}">
+          {{ chat.title }}
+        </div>
+      </a>
+      {% endfor %}
     </div>
-    <!-- Чат -->
-    <div class="col d-flex justify-content-center">
-      <div class="row w-50 bg-primary">
-        <div></div>
-        <form action=""></form>
-      </div>
+    <div class="border-top">
+      <button class="nav-link btn btn-link p-3 text-decoration-none w-100" id="toggleSidebar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6c757d" class="bi bi-layout-sidebar-inset"
+          viewBox="0 0 16 16">
+          <path
+            d="M14 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2z" />
+          <path d="M3 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" />
+        </svg>
+      </button>
     </div>
   </div>
-  <script src="{% static 'js/chat/chat.js' %}"></script>
-  {% endblock %}
+  <div class="d-flex flex-grow-1 justify-content-center">
+    <div class="w-50 d-flex flex-column">
+      <div class="d-flex flex-grow-1 flex-column f">
+        {% for message in messages %}
+        <div class="d-flex mt-2 {% if message.user %} justify-content-end {% endif %}">
+          <div>
+            {% if message.user == None %}
+            <div class="card d-inline-block p-2 bg-light">
+              {{ message.text }}
+            </div>
+            <div class="text-muted text-start">{{ message.created_at|time:"H:i" }}</div>
+            {% else %}
+            <div class="card d-inline-block p-2 bg-primary text-white">
+              {{ message.text }}
+            </div>
+            <div class="text-muted text-end">{{ message.created_at|time:"H:i" }}</div>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <form action="" class="mb-2 rounded-4 bg-light mt-2 p-3">
+        <textarea class="form-control shadow-none border-0 bg-transparent p-0 overflow-auto" style="resize: none;"
+          placeholder="Введите текст..." id="" rows="3"></textarea>
+        <div class="d-flex justify-content-end bg-transparent">
+          <button class="btn btn-primary rounded-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up"
+              viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5" />
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
+<script src="{% static 'js/chat/chat.js' %}"></script>
+{% endblock %}
