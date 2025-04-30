@@ -2,22 +2,28 @@
 {% load static %}
 {% block content %}
 <div class="container-fluid p-0 d-flex">
-  <div class="d-flex flex-column vh-100 bg-light sidebar" id="sidebar" style="background-color: red;">
-    <ul class="nav nav-pills flex-column">
-      <li class="nav-item ">
-        <a href="" class="nav-link py-3 m-2 border-bottom rounded-3 bg-primary text-decoratioin-none text-white">
-          <span>Новый чат+</span>
+  <div class="d-flex flex-column vh-100 bg-light p-2 expanded" id="sidebar" style="background-color: red;">
+    <ul class="d-flex flex-column nav nav-pills">
+      <li class="nav-item w-100">
+        <a href="/chat/start" class="nav-link py-3 border-bottom rounded-3 bg-primary text-decoratioin-none text-white text-center" id="new-chat-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-dots-fill" viewBox="0 0 16 16">
+            <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353zM5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 1a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+          </svg>
+          <span class="ms-2">Новый чат</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a href="" class="nav-link py-3 border-bottom rounded-3">
-          <span>Поиск</span>
+      <li class="nav-item w-100">
+        <a href="" class="nav-link py-3 border rounded-3 mt-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+          </svg>
+          <span class="ms-2">Поиск</span>
         </a>
       </li>
     </ul>
-    <div class="d-flex flex-column h-100 p-2" id="chats">
+    <div class="d-flex flex-column h-100" id="chats">
       {% for chat in chats %}
-      <a href="/chat/{{ chat.id }}" class="text-decoration-none">
+      <a href="/chat/{{ chat.id }}" class="text-decoration-none" id="chat-button">
         <div class="border rounded-2 mt-2 p-2 {% if chat.id == current_chat_id %} bg-primary text-white {% endif%}">
           {{ chat.title }}
         </div>
@@ -37,7 +43,7 @@
   </div>
   <div class="d-flex flex-grow-1 justify-content-center">
     <div class="w-50 d-flex flex-column">
-      <div class="d-flex flex-grow-1 flex-column f">
+      <div class="d-flex flex-grow-1 flex-column justify-content-end" id="chat-container">
         {% for message in messages %}
         <div class="d-flex mt-2 {% if message.user %} justify-content-end {% endif %}">
           <div>
@@ -56,11 +62,11 @@
         </div>
         {% endfor %}
       </div>
-      <form action="" class="mb-2 rounded-4 bg-light mt-2 p-3">
+      <form action="" class="mb-2 rounded-4 bg-light mt-2 ps-3 pt-2 pe-1 pb-1 border border-secondary" id="message-form">
         <textarea class="form-control shadow-none border-0 bg-transparent p-0 overflow-auto" style="resize: none;"
-          placeholder="Введите текст..." id="" rows="3"></textarea>
+          placeholder="Введите текст..." id="message-input" rows="3"></textarea>
         <div class="d-flex justify-content-end bg-transparent">
-          <button class="btn btn-primary rounded-5">
+          <button class="btn btn-primary rounded-4 p-2 d-flex" style="height: fit-content;">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up"
               viewBox="0 0 16 16">
               <path fill-rule="evenodd"

@@ -22,11 +22,10 @@ document.getElementById('message-form').addEventListener('submit', function(e) {
   const message = messageInput.value.trim();
   
   if (message) {
-      console.log('Отправлено сообщение:', message);
       messageInput.value = '';
       
       const messageContainer = document.createElement('div');
-      messageContainer.className = 'd-flex flex-column align-items-end mb-2';
+      messageContainer.className = 'd-flex flex-column align-items-end mt-2';
 
       const messageCard = document.createElement('div');
       messageCard.className = 'card d-inline-block p-2 bg-primary text-white';
@@ -35,15 +34,12 @@ document.getElementById('message-form').addEventListener('submit', function(e) {
       messageContainer.appendChild(messageCard);
 
       const messageTime = document.createElement('div');
-      messageTime.className = 'text-muted small';
+      messageTime.className = 'text-muted text-end';
       messageTime.innerText = getCurrentTime();
 
       messageContainer.appendChild(messageTime);
 
       const chatContainer = document.getElementById('chat-container');
-
-      console.log(chatContainer.children)
-      chatContainer.prepend(messageContainer); 
-      console.log('Добавлено сообщение:', message);
+      chatContainer.append(messageContainer); 
   }
 });
