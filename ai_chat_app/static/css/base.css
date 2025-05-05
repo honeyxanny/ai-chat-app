@@ -36,3 +36,9 @@ html, body {
     align-items: center;
     justify-content: center;
 }
+
+.error-message {
+    background-color: var(--bg-error);
+    color: var(--error);
+    border: 2px solid var(--error);
+}

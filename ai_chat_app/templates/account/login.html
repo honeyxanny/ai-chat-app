@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="d-flex justify-content-center align-center h-100 w-100 bg-secondary">
+  <form action="" method="post" class="mx-auto my-auto p-3 rounded-4 bg-white">
+    {% csrf_token %}
+    {% if error %}
+      <div class="error-message p-2 rounded-2 mb-2">{{ error }}</div>
+    {% endif %}
+    <div class="form-group">
+      <label class="form-label" for="{{ form.username.id_for_label }}">Username</label>
+      {{ form.username }}
+    </div>
+    <div class="form-group mt-2">
+      <label class="form-label" for="{{ form.password.id_for_label }}">Password</label>
+      {{ form.password }}
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+  </form>
+</div>
+{% endblock %}
