@@ -1,0 +1,12 @@
+<div class="d-flex flex-column h-100 overflow-auto" id="chats">
+    {% for chat in chats %}
+    <div class="mt-2">
+        <a href="/chat/{{ chat.id }}" class="text-decoration-none" id="chat-button">
+            <div
+                class="border rounded-2 p-2 {% if chat.id == current_chat_id %}bg-primary text-white{% else %}bg-white{% endif%}">
+                {{ chat.title }}
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>

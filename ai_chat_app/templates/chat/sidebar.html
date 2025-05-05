@@ -1,0 +1,37 @@
+<div class="d-flex flex-column vh-100 bg-light p-2 expanded" id="sidebar">
+    <ul class="d-flex flex-column nav nav-pills">
+        <li class="nav-item w-100">
+            <a href="/chat"
+                class="nav-link py-3 border-bottom rounded-3 bg-primary text-decoratioin-none text-white text-center"
+                id="new-chat-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-chat-right-dots-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353zM5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 1a1 1 0 1 1 0-2 1 1 0 0 1 0 2" />
+                </svg>
+                <span class="ms-2">Новый чат</span>
+            </a>
+        </li>
+        <li class="nav-item w-100">
+            <a href="" class="nav-link py-3 border rounded-3 mt-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-search" viewBox="0 0 16 16">
+                    <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                </svg>
+                <span class="ms-2">Поиск</span>
+            </a>
+        </li>
+    </ul>
+    {% include 'chat/chat_list.html' %}
+    <div class="border-top">
+        <button class="nav-link btn btn-link p-3 text-decoration-none w-100" id="toggleSidebar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#6c757d"
+                class="bi bi-layout-sidebar-inset" viewBox="0 0 16 16">
+                <path
+                    d="M14 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2z" />
+                <path d="M3 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" />
+            </svg>
+        </button>
+    </div>
+</div>
